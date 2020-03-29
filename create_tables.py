@@ -43,25 +43,25 @@ def create_tables(cur, conn):
     """
     "CREATE TABLE songplays"
     sqlCreateSongPlays = "CREATE TABLE IF NOT EXISTS songplays (songplay_id serial PRIMARY KEY, \
-                                                                start_time varchar NOT NULL, \
-                                                                user_id varchar NOT NULL, \
+                                                                start_time time NOT NULL, \
+                                                                user_id int NOT NULL, \
                                                                 level varchar, \
                                                                 song_id varchar, \
                                                                 artist_id varchar, \
-                                                                session_id varchar, \
+                                                                session_id int, \
                                                                 location varchar, \
                                                                 user_agent varchar);"
     "CREATE TABLE users"
-    sqlCreateUsers = "CREATE TABLE IF NOT EXISTS users (user_id int NOT NULL, \
+    sqlCreateUsers = "CREATE TABLE IF NOT EXISTS users (user_id int NOT NULL PRIMARY KEY, \
                                                         first_name varchar, last_name varchar, gender varchar, level varchar);"
     "CREATE TABLE songs"
-    sqlCreateSongs = "CREATE TABLE IF NOT EXISTS songs (song_id varchar NOT NULL, \
+    sqlCreateSongs = "CREATE TABLE IF NOT EXISTS songs (song_id varchar NOT NULL PRIMARY KEY, \
                                                             title varchar, artist_id varchar, year int, duration numeric);"
     "CREATE TABLE artists"
-    sqlCreateArtists = "CREATE TABLE IF NOT EXISTS artists (artist_id varchar NOT NULL, \
+    sqlCreateArtists = "CREATE TABLE IF NOT EXISTS artists (artist_id varchar NOT NULL PRIMARY KEY, \
                                                             name varchar, location varchar, latitude numeric, longitude numeric);"
     "CREATE TABLE time"
-    sqlCreateTime = "CREATE TABLE IF NOT EXISTS time (start_time timestamp, hour int, day int, week int, month int, year int, weekday int);"
+    sqlCreateTime = "CREATE TABLE IF NOT EXISTS time (start_time time PRIMARY KEY, hour int, day int, week int, month int, year int, weekday int);"
     
     create_table_queries = [sqlCreateSongPlays, sqlCreateUsers, sqlCreateSongs, sqlCreateArtists, sqlCreateTime]
     for query in create_table_queries:
